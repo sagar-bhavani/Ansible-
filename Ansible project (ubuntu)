@@ -6,6 +6,7 @@ $ vim ansible_key
 $ .ssh pwd 
 $ ls
 $ sudo ssh _i ~/.ssh/ansible_key ubuntu @ (public ip of the server node) 
+$ exit
 $ cat /etc/ansible/hosts
 $ mkdir ansible
 $ cd ansible/
@@ -19,8 +20,12 @@ $ vim hosts
 $ ansible-inventory --list -y 
 $ pwd
 $ ansible-inventory --list -y -i /home/ubuntu/ansible/hosts
-$ ansible all -m ping -i /home/ubuntu/ansible/hosts
-$
-$
-$
-$
+$ ansible all -m ping -i /home/ubuntu/ansible/hosts --private-key=~/.ssh/ansible_key
+$ cd..
+$ cd .ssh
+$ cd.. 
+$ chmod 700 ~/.ssh
+$ chmod 600 ~/.ssh/ansible_key 
+$ ansible all -m ping -i /home/ubuntu/ansible/hosts --private-key=~/.ssh/ansible_key
+$ ansible all -a "free -h" -i /home/ubuntu/ansible/hosts --private-key=~/.ssh/ansible_key
+$ ansible servers -a "uptime" -i /home/ubuntu/ansible/hosts --private-key=~/.ssh/ansible_key
